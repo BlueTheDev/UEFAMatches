@@ -13,88 +13,96 @@
             --uefa-red: #d2002c;
             --uefa-dark: #0a1730;
             --uefa-light: #f8f9fa;
+            --uefa-white: #ffffff;
             --match-finished: #6c757d;
             --match-live: #dc3545;
             --match-upcoming: #28a745;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: var(--uefa-light);
             color: var(--uefa-dark);
             min-height: 100vh;
+            line-height: 1.5;
             overflow-x: hidden;
         }
         
-        /* UEFA Header */
+        /* UEFA Header - Mobile Optimiert */
         .uefa-header {
-            background: linear-gradient(90deg, var(--uefa-blue) 0%, var(--uefa-light-blue) 100%);
-            color: white;
-            padding: 0 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--uefa-blue) 0%, var(--uefa-light-blue) 100%);
+            color: var(--uefa-white);
+            padding: 0 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .uefa-top-bar {
+            padding: 15px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .uefa-logo {
-            font-size: 30px;
-            font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 12px;
-            letter-spacing: 0.5px;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
         }
         
         .uefa-logo i {
             color: var(--uefa-gold);
-            font-size: 32px;
+            font-size: 24px;
         }
         
         .uefa-date {
-            font-size: 15px;
+            font-size: 14px;
             opacity: 0.9;
             background: rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 15px;
         }
         
-        /* Navigation */
+        /* Mobile Navigation Tabs */
         .uefa-nav {
             display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
             gap: 0;
+            padding: 5px 0;
+        }
+        
+        .uefa-nav::-webkit-scrollbar {
+            display: none;
         }
         
         .nav-item {
-            padding: 20px 35px;
+            padding: 16px 20px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-            position: relative;
             font-size: 16px;
-            letter-spacing: 0.3px;
+            cursor: pointer;
+            white-space: nowrap;
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.12);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            flex-shrink: 0;
         }
         
         .nav-item.active {
@@ -102,101 +110,93 @@
             border-bottom: 3px solid var(--uefa-gold);
         }
         
-        /* Main Content */
+        /* Main Content - Mobile Optimiert */
         .main-content {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 25px;
+            padding: 20px;
+            max-width: 100%;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .tournament-section {
             display: none;
-            animation: fadeIn 0.5s;
         }
         
         .tournament-section.active {
             display: block;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Tournament Header */
         .tournament-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 2px solid rgba(0, 51, 160, 0.1);
         }
         
         .tournament-title {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 800;
             color: var(--uefa-blue);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+            margin-bottom: 10px;
         }
         
         .tournament-title i {
             color: var(--uefa-gold);
-            font-size: 32px;
         }
         
         .tournament-stage {
-            background: linear-gradient(90deg, var(--uefa-blue), var(--uefa-light-blue));
+            background: linear-gradient(135deg, var(--uefa-blue), var(--uefa-light-blue));
             color: white;
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-size: 15px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            display: inline-block;
         }
         
-        /* Matches Grid */
+        /* Matches Grid - Mobile Optimiert */
         .matches-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
         }
         
-        /* Match Card */
+        /* Match Card - Touch Friendly */
         .match-card {
-            background: white;
+            background: var(--uefa-white);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            border: 1px solid #e0e0e0;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             cursor: pointer;
             position: relative;
-        }
-        
-        .match-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            padding-bottom: 15px;
         }
         
         .match-card:active {
-            transform: translateY(-4px);
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .match-header {
-            background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 18px 25px;
-            border-bottom: 1px solid #dee2e6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .match-date {
-            font-size: 15px;
+            font-size: 14px;
             color: #495057;
             font-weight: 600;
             display: flex;
@@ -209,10 +209,10 @@
         }
         
         .match-status {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            padding: 6px 15px;
-            border-radius: 15px;
+            padding: 5px 12px;
+            border-radius: 12px;
             letter-spacing: 0.5px;
         }
         
@@ -224,7 +224,6 @@
         .status-live {
             background: var(--match-live);
             color: white;
-            animation: pulse 2s infinite;
         }
         
         .status-upcoming {
@@ -232,21 +231,17 @@
             color: white;
         }
         
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-        
         .match-content {
-            padding: 30px 25px;
+            padding: 20px;
         }
         
+        /* Teams Layout - Mobile Optimiert */
         .teams {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            gap: 15px;
         }
         
         .team {
@@ -254,61 +249,64 @@
             flex-direction: column;
             align-items: center;
             flex: 1;
+            text-align: center;
+            min-width: 0; /* Wichtig für Text-Überlauf */
         }
         
         .team-logo {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             border: 3px solid white;
-            transition: transform 0.3s;
-        }
-        
-        .match-card:hover .team-logo {
-            transform: scale(1.05);
         }
         
         .team-logo i {
-            font-size: 36px;
+            font-size: 30px;
         }
         
         .team-name {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
         }
         
         .team-country {
-            font-size: 14px;
+            font-size: 12px;
             color: #6c757d;
             font-weight: 500;
         }
         
         .score {
-            font-size: 52px;
+            font-size: 42px;
             font-weight: 800;
-            margin: 0 30px;
             color: var(--uefa-blue);
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+            min-width: 80px;
+            text-align: center;
         }
         
         .match-info {
             text-align: center;
-            font-size: 15px;
+            font-size: 14px;
             color: #495057;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #f0f0f0;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .match-info i {
@@ -317,148 +315,146 @@
         
         /* Goals Preview */
         .goals-preview {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 12px;
             background: #f8f9fa;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         .goals-title {
             font-weight: 700;
             color: var(--uefa-blue);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 14px;
         }
         
         .goal-preview-item {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
-            padding: 6px 0;
+            margin-bottom: 6px;
+            padding: 5px 0;
         }
         
         .goal-time {
             background: var(--uefa-blue);
             color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
+            padding: 3px 10px;
+            border-radius: 10px;
             font-weight: 600;
-            margin-right: 12px;
-            min-width: 45px;
+            margin-right: 10px;
+            min-width: 40px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
         }
         
         .goal-scorer {
             font-weight: 600;
+            font-size: 13px;
         }
         
         .view-details {
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: center;
             color: var(--uefa-blue);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             opacity: 0.8;
-            transition: opacity 0.3s;
         }
         
-        .match-card:hover .view-details {
-            opacity: 1;
+        /* Next Matches */
+        .next-matches {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(0, 51, 160, 0.1);
         }
         
-        /* Detail Overlay */
-        .match-detail-overlay {
+        .next-matches-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--uefa-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Match Detail Page */
+        .match-detail-page {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
+            background: var(--uefa-white);
             z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeInOverlay 0.3s;
-        }
-        
-        @keyframes fadeInOverlay {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .match-detail-container {
-            background: white;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s;
+            -webkit-overflow-scrolling: touch;
+            display: none;
+            animation: slideIn 0.3s ease;
         }
         
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
         
         .detail-header {
-            background: linear-gradient(90deg, var(--uefa-blue) 0%, var(--uefa-light-blue) 100%);
+            background: linear-gradient(135deg, var(--uefa-blue) 0%, var(--uefa-light-blue) 100%);
             color: white;
-            padding: 25px 30px;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .detail-header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 20px 20px 0 0;
+            margin-bottom: 15px;
         }
         
-        .detail-title {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .close-detail {
+        .back-button {
             background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            cursor: pointer;
+            font-size: 20px;
+            transition: var(--transition);
         }
         
-        .close-detail:hover {
+        .back-button:active {
             background: rgba(255, 255, 255, 0.3);
         }
         
-        .detail-content {
-            padding: 30px;
+        .detail-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            flex: 1;
+            margin: 0 15px;
         }
         
         .detail-teams {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #e9ecef;
+            gap: 15px;
         }
         
         .detail-team {
@@ -466,840 +462,893 @@
             flex-direction: column;
             align-items: center;
             flex: 1;
+            text-align: center;
         }
         
         .detail-team-logo {
-            width: 120px;
-            height: 120px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border: 5px solid white;
+            margin-bottom: 10px;
         }
         
         .detail-team-logo i {
-            font-size: 54px;
-            color: var(--uefa-blue);
+            font-size: 28px;
         }
         
         .detail-team-name {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
         
         .detail-score {
-            font-size: 72px;
-            font-weight: 900;
-            margin: 0 50px;
-            color: var(--uefa-blue);
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0 10px;
         }
         
-        .detail-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .info-box {
-            background: #f8f9fa;
+        .detail-content {
             padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid var(--uefa-blue);
+            animation: fadeIn 0.4s ease 0.1s both;
         }
         
-        .info-title {
+        /* Detail Sections */
+        .detail-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 18px;
             font-weight: 700;
             color: var(--uefa-blue);
-            margin-bottom: 10px;
-            font-size: 16px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        
-        .info-value {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--uefa-dark);
-        }
-        
-        .detail-goals {
-            margin-top: 30px;
-        }
-        
-        .goals-section {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .goals-section-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--uefa-blue);
-            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid rgba(0, 51, 160, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         
-        .goal-detail-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
+        .section-title i {
+            color: var(--uefa-gold);
         }
         
-        .goal-detail-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .goal-detail-time {
-            background: var(--uefa-blue);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 15px;
-            font-weight: 700;
-            margin-right: 20px;
-            min-width: 70px;
-            text-align: center;
-            font-size: 16px;
-        }
-        
-        .goal-detail-scorer {
-            font-size: 18px;
-            font-weight: 600;
-            flex: 1;
-        }
-        
-        .goal-detail-assist {
-            color: #6c757d;
-            font-size: 15px;
-            font-style: italic;
-        }
-        
-        /* Next Matches */
-        .next-matches {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(0, 51, 160, 0.1);
-        }
-        
-        .next-matches-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--uefa-blue);
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
+        /* Match Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
         
-        .next-matches-title i {
-            color: var(--uefa-gold);
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--uefa-dark);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--uefa-blue);
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 600;
+        }
+        
+        /* Goals List */
+        .goals-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .goal-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        
+        .goal-item:active {
+            transform: scale(0.98);
+        }
+        
+        .goal-time {
+            background: var(--uefa-blue);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-right: 15px;
+            min-width: 55px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .goal-details {
+            flex: 1;
+        }
+        
+        .goal-scorer {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--uefa-dark);
+            margin-bottom: 4px;
+        }
+        
+        .goal-assist {
+            font-size: 13px;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .goal-team {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        
+        .team-home {
+            background: rgba(0, 51, 160, 0.1);
+            color: var(--uefa-blue);
+        }
+        
+        .team-away {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
         }
         
         /* Footer */
         .uefa-footer {
             background: var(--uefa-dark);
             color: white;
-            padding: 40px 30px;
+            padding: 30px 20px;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 40px;
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 25px;
+            gap: 20px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
         
         .footer-link {
             color: white;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             opacity: 0.8;
-            transition: opacity 0.3s;
+            transition: var(--transition);
         }
         
         .footer-link:hover {
             opacity: 1;
-            text-decoration: underline;
         }
         
         .copyright {
-            font-size: 14px;
+            font-size: 12px;
             opacity: 0.6;
-            margin-top: 25px;
+            margin-top: 20px;
         }
         
-        /* Responsive */
-        @media (max-width: 1100px) {
-            .matches-grid {
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            }
-        }
-        
-        @media (max-width: 768px) {
+        /* Tablet und Desktop */
+        @media (min-width: 768px) {
             .uefa-header {
-                padding: 0 15px;
+                padding: 0 40px;
             }
             
             .uefa-nav {
-                overflow-x: auto;
+                justify-content: center;
             }
             
             .nav-item {
-                padding: 15px 20px;
-                font-size: 14px;
-                white-space: nowrap;
+                padding: 20px 30px;
+            }
+            
+            .main-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 30px 40px;
             }
             
             .matches-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
             }
             
             .tournament-title {
-                font-size: 28px;
+                font-size: 36px;
             }
             
-            .detail-teams {
-                flex-direction: column;
-                gap: 30px;
+            .detail-header {
+                padding: 30px 40px;
             }
             
-            .detail-score {
-                margin: 20px 0;
-                order: -1;
+            .detail-content {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px;
             }
             
-            .team-name {
-                font-size: 20px;
+            .info-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
             
-            .score {
-                font-size: 42px;
-                margin: 0 20px;
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
+            
+            .team-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .team-logo i {
+                font-size: 36px;
+            }
+            
+            .detail-team-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .detail-team-logo i {
+                font-size: 36px;
+            }
+        }
+        
+        /* Sehr große Displays */
+        @media (min-width: 1200px) {
+            .matches-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Touch Scroll verbessern */
+        * {
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Text Selection verbessern */
+        ::selection {
+            background: var(--uefa-blue);
+            color: white;
+        }
+        
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 51, 160, 0.1);
+            border-top: 4px solid var(--uefa-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* No Content Message */
+        .no-content {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
+        }
+        
+        .no-content i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #dee2e6;
         }
     </style>
 </head>
 <body>
-    <!-- UEFA Header -->
-    <header class="uefa-header">
-        <div class="uefa-top-bar">
-            <div class="uefa-logo">
-                <i class="fas fa-trophy"></i>
-                UEFA
-            </div>
-            <div class="uefa-date">Freitag, 19. Dezember 2025</div>
-        </div>
-        
-        <nav class="uefa-nav">
-            <div class="nav-item active" data-tournament="champions">
-                <i class="fas fa-trophy"></i> UEFA CHAMPIONS LEAGUE
-            </div>
-            <div class="nav-item" data-tournament="qualifiers">
-                <i class="fas fa-flag"></i> EUROPEAN QUALIFIERS
-            </div>
-        </nav>
-    </header>
-    
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Champions League Section -->
-        <section id="champions" class="tournament-section active">
-            <div class="tournament-header">
-                <h1 class="tournament-title">
-                    <i class="fas fa-trophy"></i> UEFA CHAMPIONS LEAGUE
-                </h1>
-                <div class="tournament-stage">Halbfinale & Finale</div>
+    <!-- Main Page -->
+    <div id="mainPage">
+        <!-- UEFA Header -->
+        <header class="uefa-header">
+            <div class="uefa-top-bar">
+                <div class="uefa-logo">
+                    <i class="fas fa-trophy"></i>
+                    UEFA
+                </div>
+                <div class="uefa-date">Freitag, 19. Dezember 2025</div>
             </div>
             
-            <div class="matches-grid">
-                <!-- Match 1: Abdi 3 - 2 Borislav -->
-                <div class="match-card" data-match="match1">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> Spieltag 6 • 10.12.2025 • 20:00
-                        </div>
-                        <div class="match-status status-finished">BEENDET</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #0033a0;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">ABDI</div>
-                                <div class="team-country">International</div>
-                            </div>
-                            
-                            <div class="score">3 - 2</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #dc3545;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">BORISLAV</div>
-                                <div class="team-country">International</div>
-                            </div>
-                        </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">8'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">22'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">26'</span>
-                                <span class="goal-scorer">Borislav</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">45+2'</span>
-                                <span class="goal-scorer">Borislav</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">68'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı, Istanbul
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
+            <nav class="uefa-nav">
+                <div class="nav-item active" data-tournament="champions">
+                    <i class="fas fa-trophy"></i> CHAMPIONS LEAGUE
                 </div>
-                
-                <!-- Match 2: Elias 2 - 2 Radion -->
-                <div class="match-card" data-match="match2">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> Spieltag 6 • 10.12.2025 • 20:00
-                        </div>
-                        <div class="match-status status-finished">BEENDET</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #28a745;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">ELIAS</div>
-                                <div class="team-country">International</div>
-                            </div>
-                            
-                            <div class="score">2 - 2</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #6f42c1;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">RADION</div>
-                                <div class="team-country">International</div>
-                            </div>
-                        </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">15'</span>
-                                <span class="goal-scorer">Elias</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">33'</span>
-                                <span class="goal-scorer">Radion</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">51'</span>
-                                <span class="goal-scorer">Elias</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">78'</span>
-                                <span class="goal-scorer">Radion</span>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Allianz Arena, München
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Match 3: Elias 1 - 4 Abdi (HALBFINALE) -->
-                <div class="match-card" data-match="match3">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> Halbfinale • 14.12.2025 • 21:00
-                        </div>
-                        <div class="match-status status-finished">BEENDET</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #28a745;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">ELIAS</div>
-                                <div class="team-country">International</div>
-                            </div>
-                            
-                            <div class="score">1 - 4</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #0033a0;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">ABDI</div>
-                                <div class="team-country">International</div>
-                            </div>
-                        </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">11'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">28'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">41'</span>
-                                <span class="goal-scorer">Elias</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">67'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">84'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Wembley Stadium, London
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Match 4: Abdi 1 - 2 Radion -->
-                <div class="match-card" data-match="match4">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> Viertelfinale • 05.12.2025 • 21:00
-                        </div>
-                        <div class="match-status status-finished">BEENDET</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #0033a0;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">ABDI</div>
-                                <div class="team-country">International</div>
-                            </div>
-                            
-                            <div class="score">1 - 2</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #6f42c1;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">RADION</div>
-                                <div class="team-country">International</div>
-                            </div>
-                        </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">28'</span>
-                                <span class="goal-scorer">Abdi</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">61'</span>
-                                <span class="goal-scorer">Radion</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">84'</span>
-                                <span class="goal-scorer">Radion</span>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Estadio Santiago Bernabéu, Madrid
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Next Match: Finale -->
-            <div class="next-matches">
-                <h2 class="next-matches-title">
-                    <i class="fas fa-chevron-circle-right"></i> NÄCHSTES SPIEL
-                </h2>
-                
-                <div class="match-card" data-match="final">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> Finale • 19.12.2025 • 20:00
-                        </div>
-                        <div class="match-status status-upcoming">FINAL</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #0033a0;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">ABDI</div>
-                                <div class="team-country">International</div>
-                            </div>
-                            
-                            <div class="score">VS</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #6f42c1;">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="team-name">RADION</div>
-                                <div class="team-country">International</div>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı, Istanbul
-                        </div>
-                        <div class="match-info">
-                            <i class="fas fa-trophy"></i> UEFA CHAMPIONS LEAGUE FINALE 2025
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- European Qualifiers Section -->
-        <section id="qualifiers" class="tournament-section">
-            <div class="tournament-header">
-                <h1 class="tournament-title">
+                <div class="nav-item" data-tournament="qualifiers">
                     <i class="fas fa-flag"></i> EUROPEAN QUALIFIERS
-                </h1>
-                <div class="tournament-stage">Gruppenphase & Playoffs</div>
-            </div>
+                </div>
+            </nav>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Champions League Section -->
+            <section id="champions" class="tournament-section active">
+                <div class="tournament-header">
+                    <h1 class="tournament-title">
+                        <i class="fas fa-trophy"></i> UEFA CHAMPIONS LEAGUE
+                    </h1>
+                    <div class="tournament-stage">Halbfinale & Finale</div>
+                </div>
+                
+                <div class="matches-grid">
+                    <!-- Match 1: Abdi 3 - 2 Borislav -->
+                    <div class="match-card" data-match="match1">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 10.12.2025 • 20:00
+                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #0033a0;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">ABDI</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                                
+                                <div class="score">3 - 2</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #dc3545;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">BORISLAV</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                            </div>
+                            
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">8'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">22'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">26'</span>
+                                    <span class="goal-scorer">Borislav</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı, Istanbul
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Match 2: Elias 2 - 2 Radion -->
+                    <div class="match-card" data-match="match2">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 10.12.2025 • 20:00
+                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #28a745;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">ELIAS</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                                
+                                <div class="score">2 - 2</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #6f42c1;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">RADION</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                            </div>
+                            
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">15'</span>
+                                    <span class="goal-scorer">Elias</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">33'</span>
+                                    <span class="goal-scorer">Radion</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Allianz Arena, München
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Match 3: Elias 1 - 4 Abdi (HALBFINALE) -->
+                    <div class="match-card" data-match="match3">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 14.12.2025 • 21:00
+                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #28a745;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">ELIAS</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                                
+                                <div class="score">1 - 4</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #0033a0;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">ABDI</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                            </div>
+                            
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">11'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">28'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">41'</span>
+                                    <span class="goal-scorer">Elias</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Wembley Stadium, London
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Match 4: Abdi 1 - 2 Radion -->
+                    <div class="match-card" data-match="match4">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 05.12.2025 • 21:00
+                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #0033a0;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">ABDI</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                                
+                                <div class="score">1 - 2</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #6f42c1;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">RADION</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                            </div>
+                            
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">28'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">61'</span>
+                                    <span class="goal-scorer">Radion</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Estadio Santiago Bernabéu, Madrid
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Next Match: Finale -->
+                <div class="next-matches">
+                    <h2 class="next-matches-title">
+                        <i class="fas fa-chevron-circle-right"></i> NÄCHSTES SPIEL
+                    </h2>
+                    
+                    <div class="match-card" data-match="final">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 19.12.2025 • 20:00
+                            </div>
+                            <div class="match-status status-upcoming">FINAL</div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #0033a0;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">ABDI</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                                
+                                <div class="score">VS</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #6f42c1;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="team-name">RADION</div>
+                                    <div class="team-country">International</div>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı, Istanbul
+                            </div>
+                            <div class="match-info">
+                                <i class="fas fa-trophy"></i> UEFA CHAMPIONS LEAGUE FINALE 2025
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             
-            <div class="matches-grid">
-                <!-- Match 1: Bulgaria 11 - 11 Türkiye -->
-                <div class="match-card" data-match="qualifier1">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> 15.10.2025 • 18:00
+            <!-- European Qualifiers Section -->
+            <section id="qualifiers" class="tournament-section">
+                <div class="tournament-header">
+                    <h1 class="tournament-title">
+                        <i class="fas fa-flag"></i> EUROPEAN QUALIFIERS
+                    </h1>
+                    <div class="tournament-stage">Gruppenphase & Playoffs</div>
+                </div>
+                
+                <div class="matches-grid">
+                    <!-- Match 1: Bulgaria 11 - 11 Türkiye -->
+                    <div class="match-card" data-match="qualifier1">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 15.10.2025 • 18:00
+                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
                         </div>
-                        <div class="match-status status-finished">BEENDET</div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #dc3545;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">BULGARIA</div>
+                                    <div class="team-country">Europe</div>
+                                </div>
+                                
+                                <div class="score">11 - 11</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #dc3545;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">TÜRKIYE</div>
+                                    <div class="team-country">Europe</div>
+                                </div>
+                            </div>
+                            
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore (Auswahl)
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">3'</span>
+                                    <span class="goal-scorer">Borislav</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">11'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">18'</span>
+                                    <span class="goal-scorer">Radion</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Vasil Levski, Sofia
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
+                        </div>
                     </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #dc3545;">
-                                    <i class="fas fa-flag"></i>
+                    
+                    <!-- Match 2: Türkiye 5 - 0 Romania -->
+                    <div class="match-card" data-match="qualifier2">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 08.09.2025 • 20:45
+                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #dc3545;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">TÜRKIYE</div>
+                                    <div class="team-country">Europe</div>
                                 </div>
-                                <div class="team-name">BULGARIA</div>
-                                <div class="team-country">Europe</div>
+                                
+                                <div class="score">5 - 0</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #ffcd00;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">ROMANIA</div>
+                                    <div class="team-country">Europe</div>
+                                </div>
                             </div>
                             
-                            <div class="score">11 - 11</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #dc3545;">
-                                    <i class="fas fa-flag"></i>
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore
                                 </div>
-                                <div class="team-name">TÜRKIYE</div>
-                                <div class="team-country">Europe</div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">22'</span>
+                                    <span class="goal-scorer">Radion</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">34'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">51'</span>
+                                    <span class="goal-scorer">Borislav</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
                             </div>
                         </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore (Auswahl)
+                    </div>
+                    
+                    <!-- Match 3: Türkiye 3 - 1 Georgia -->
+                    <div class="match-card" data-match="qualifier3">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 12.10.2025 • 20:45
                             </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">3'</span>
-                                <span class="goal-scorer">Borislav (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">11'</span>
-                                <span class="goal-scorer">Abdi (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">18'</span>
-                                <span class="goal-scorer">Radion (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">+ 8 weitere Tore</span>
-                            </div>
+                            <div class="match-status status-finished">BEENDET</div>
                         </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Vasil Levski National Stadium, Sofia
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #dc3545;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">TÜRKIYE</div>
+                                    <div class="team-country">Europe</div>
+                                </div>
+                                
+                                <div class="score">3 - 1</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #ffffff; background: #dc3545; border-radius: 50%;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">GEORGIA</div>
+                                    <div class="team-country">Europe</div>
+                                </div>
+                            </div>
+                            
+                            <div class="goals-preview">
+                                <div class="goals-title">
+                                    <i class="fas fa-futbol"></i> Tore
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">17'</span>
+                                    <span class="goal-scorer">Borislav</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">39'</span>
+                                    <span class="goal-scorer">Abdi</span>
+                                </div>
+                                <div class="goal-preview-item">
+                                    <span class="goal-time">62'</span>
+                                    <span class="goal-scorer">Elias</span>
+                                </div>
+                            </div>
+                            
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Rams Park, Istanbul
+                            </div>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Match 2: Türkiye 5 - 0 Romania -->
-                <div class="match-card" data-match="qualifier2">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> 08.09.2025 • 20:45
+                <!-- Next Match: Playoff -->
+                <div class="next-matches">
+                    <h2 class="next-matches-title">
+                        <i class="fas fa-chevron-circle-right"></i> PLAYOFF SPIELE
+                    </h2>
+                    
+                    <div class="match-card" data-match="playoff">
+                        <div class="match-header">
+                            <div class="match-date">
+                                <i class="far fa-calendar"></i> 24.12.2025 • 13:00
+                            </div>
+                            <div class="match-status status-upcoming">PLAYOFF</div>
                         </div>
-                        <div class="match-status status-finished">BEENDET</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #dc3545;">
-                                    <i class="fas fa-flag"></i>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo" style="color: #dc3545;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">TÜRKIYE</div>
+                                    <div class="team-country">Europe</div>
                                 </div>
-                                <div class="team-name">TÜRKIYE</div>
-                                <div class="team-country">Europe</div>
+                                
+                                <div class="score">VS</div>
+                                
+                                <div class="team">
+                                    <div class="team-logo" style="color: #000000;">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="team-name">GERMANY</div>
+                                    <div class="team-country">Europe</div>
+                                </div>
                             </div>
                             
-                            <div class="score">5 - 0</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #ffcd00;">
-                                    <i class="fas fa-flag"></i>
-                                </div>
-                                <div class="team-name">ROMANIA</div>
-                                <div class="team-country">Europe</div>
+                            <div class="match-info">
+                                <i class="fas fa-map-marker-alt"></i> Olympiastadion, Berlin
                             </div>
-                        </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore
+                            <div class="match-info">
+                                <i class="fas fa-info-circle"></i> Playoff Runde 1/2
                             </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">22'</span>
-                                <span class="goal-scorer">Radion (TÜR)</span>
+                            <div class="view-details">
+                                <i class="fas fa-external-link-alt"></i> Details anzeigen
                             </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">34'</span>
-                                <span class="goal-scorer">Abdi (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">51'</span>
-                                <span class="goal-scorer">Borislav (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">67'</span>
-                                <span class="goal-scorer">Elias (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">83'</span>
-                                <span class="goal-scorer">Radion (TÜR)</span>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı, Istanbul
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
                         </div>
                     </div>
                 </div>
-                
-                <!-- Match 3: Türkiye 3 - 1 Georgia -->
-                <div class="match-card" data-match="qualifier3">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> 12.10.2025 • 20:45
-                        </div>
-                        <div class="match-status status-finished">BEENDET</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #dc3545;">
-                                    <i class="fas fa-flag"></i>
-                                </div>
-                                <div class="team-name">TÜRKIYE</div>
-                                <div class="team-country">Europe</div>
-                            </div>
-                            
-                            <div class="score">3 - 1</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #ffffff; background: #dc3545; border-radius: 50%;">
-                                    <i class="fas fa-flag"></i>
-                                </div>
-                                <div class="team-name">GEORGIA</div>
-                                <div class="team-country">Europe</div>
-                            </div>
-                        </div>
-                        
-                        <div class="goals-preview">
-                            <div class="goals-title">
-                                <i class="fas fa-futbol"></i> Tore
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">17'</span>
-                                <span class="goal-scorer">Borislav (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">39'</span>
-                                <span class="goal-scorer">Abdi (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">62'</span>
-                                <span class="goal-scorer">Elias (TÜR)</span>
-                            </div>
-                            <div class="goal-preview-item">
-                                <span class="goal-time">78'</span>
-                                <span class="goal-scorer">Kvaratskhelia (GEO)</span>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Rams Park, Istanbul
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
-                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="uefa-footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Über UEFA</a>
+                <a href="#" class="footer-link">Ergebnisse</a>
+                <a href="#" class="footer-link">Teams</a>
+                <a href="#" class="footer-link">Nachrichten</a>
             </div>
-            
-            <!-- Next Match: Playoff -->
-            <div class="next-matches">
-                <h2 class="next-matches-title">
-                    <i class="fas fa-chevron-circle-right"></i> PLAYOFF SPIELE
-                </h2>
-                
-                <div class="match-card" data-match="playoff">
-                    <div class="match-header">
-                        <div class="match-date">
-                            <i class="far fa-calendar"></i> 24.12.2025 • 13:00
-                        </div>
-                        <div class="match-status status-upcoming">PLAYOFF</div>
-                    </div>
-                    <div class="match-content">
-                        <div class="teams">
-                            <div class="team">
-                                <div class="team-logo" style="color: #dc3545;">
-                                    <i class="fas fa-flag"></i>
-                                </div>
-                                <div class="team-name">TÜRKIYE</div>
-                                <div class="team-country">Europe</div>
-                            </div>
-                            
-                            <div class="score">VS</div>
-                            
-                            <div class="team">
-                                <div class="team-logo" style="color: #000000;">
-                                    <i class="fas fa-flag"></i>
-                                </div>
-                                <div class="team-name">GERMANY</div>
-                                <div class="team-country">Europe</div>
-                            </div>
-                        </div>
-                        
-                        <div class="match-info">
-                            <i class="fas fa-map-marker-alt"></i> Olympiastadion, Berlin
-                        </div>
-                        <div class="match-info">
-                            <i class="fas fa-info-circle"></i> Playoff Runde 1/2 • EM-Qualifikation
-                        </div>
-                        <div class="view-details">
-                            <i class="fas fa-external-link-alt"></i> Details anzeigen
-                        </div>
-                    </div>
-                </div>
+            <div class="copyright">
+                © 2025 UEFA. Alle Rechte vorbehalten. Demo.
             </div>
-        </section>
-    </main>
-    
-    <!-- Match Detail Overlay -->
-    <div class="match-detail-overlay" id="matchDetailOverlay">
-        <div class="match-detail-container">
-            <div class="detail-header">
-                <div class="detail-title" id="detailTitle">
-                    <i class="fas fa-futbol"></i> Spiel Details
-                </div>
-                <button class="close-detail" id="closeDetail">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="detail-content" id="detailContent">
-                <!-- Content wird dynamisch geladen -->
-            </div>
-        </div>
+        </footer>
     </div>
     
-    <!-- Footer -->
-    <footer class="uefa-footer">
-        <div class="footer-links">
-            <a href="#" class="footer-link">Über UEFA</a>
-            <a href="#" class="footer-link">Termine & Ergebnisse</a>
-            <a href="#" class="footer-link">Teams</a>
-            <a href="#" class="footer-link">Nachrichten</a>
-            <a href="#" class="footer-link">Tickets</a>
-            <a href="#" class="footer-link">Fan-Shop</a>
-        </div>
-        <div class="copyright">
-            © 2025 UEFA. Alle Rechte vorbehalten. Diese Seite ist eine Demonstration.
-        </div>
-    </footer>
+    <!-- Match Detail Page (wird dynamisch geladen) -->
+    <div id="matchDetailPage" class="match-detail-page"></div>
 
     <script>
         // Match Daten
@@ -1312,11 +1361,17 @@
                 date: "10. Dezember 2025 • 20:00",
                 stadium: "Atatürk Olimpiyat Stadı, Istanbul",
                 status: "BEENDET",
+                round: "Gruppenphase",
+                competition: "UEFA Champions League",
                 stats: {
                     possession: "54% - 46%",
                     shots: "14 - 9",
+                    shotsOnTarget: "8 - 5",
                     corners: "6 - 4",
-                    fouls: "12 - 16"
+                    fouls: "12 - 16",
+                    yellowCards: "2 - 3",
+                    redCards: "0 - 0",
+                    offsides: "1 - 2"
                 },
                 goals: [
                     {time: "8'", scorer: "Abdi", assist: "Radion", team: "home"},
@@ -1324,7 +1379,11 @@
                     {time: "26'", scorer: "Borislav", assist: "Penalty", team: "away"},
                     {time: "45+2'", scorer: "Borislav", assist: "Freistoß", team: "away"},
                     {time: "68'", scorer: "Abdi", assist: "Einzelaktion", team: "home"}
-                ]
+                ],
+                players: {
+                    home: ["Abdi (C)", "Radion", "Elias", "Müller", "Schmidt"],
+                    away: ["Borislav (C)", "Ivanov", "Petrov", "Kovac", "Sanchez"]
+                }
             },
             match2: {
                 title: "Champions League - Spieltag 6",
@@ -1334,18 +1393,28 @@
                 date: "10. Dezember 2025 • 20:00",
                 stadium: "Allianz Arena, München",
                 status: "BEENDET",
+                round: "Gruppenphase",
+                competition: "UEFA Champions League",
                 stats: {
                     possession: "48% - 52%",
                     shots: "11 - 13",
+                    shotsOnTarget: "6 - 7",
                     corners: "5 - 7",
-                    fouls: "14 - 11"
+                    fouls: "14 - 11",
+                    yellowCards: "2 - 2",
+                    redCards: "0 - 0",
+                    offsides: "3 - 1"
                 },
                 goals: [
                     {time: "15'", scorer: "Elias", assist: "Abdi", team: "home"},
                     {time: "33'", scorer: "Radion", assist: "Borislav", team: "away"},
                     {time: "51'", scorer: "Elias", assist: "Freistoß", team: "home"},
                     {time: "78'", scorer: "Radion", assist: "Ecke", team: "away"}
-                ]
+                ],
+                players: {
+                    home: ["Elias (C)", "Abdi", "Müller", "Weber", "Fischer"],
+                    away: ["Radion (C)", "Borislav", "Ivanov", "Petrov", "Kovac"]
+                }
             },
             match3: {
                 title: "Champions League - Halbfinale",
@@ -1355,11 +1424,17 @@
                 date: "14. Dezember 2025 • 21:00",
                 stadium: "Wembley Stadium, London",
                 status: "BEENDET",
+                round: "Halbfinale",
+                competition: "UEFA Champions League",
                 stats: {
                     possession: "42% - 58%",
                     shots: "8 - 18",
+                    shotsOnTarget: "4 - 12",
                     corners: "3 - 9",
-                    fouls: "16 - 10"
+                    fouls: "16 - 10",
+                    yellowCards: "3 - 1",
+                    redCards: "0 - 0",
+                    offsides: "2 - 3"
                 },
                 goals: [
                     {time: "11'", scorer: "Abdi", assist: "Radion", team: "away"},
@@ -1367,7 +1442,11 @@
                     {time: "41'", scorer: "Elias", assist: "Freistoß", team: "home"},
                     {time: "67'", scorer: "Abdi", assist: "Borislav", team: "away"},
                     {time: "84'", scorer: "Abdi", assist: "Elias", team: "away"}
-                ]
+                ],
+                players: {
+                    home: ["Elias (C)", "Müller", "Schmidt", "Weber", "Fischer"],
+                    away: ["Abdi (C)", "Radion", "Borislav", "Ivanov", "Petrov"]
+                }
             },
             match4: {
                 title: "Champions League - Viertelfinale",
@@ -1377,17 +1456,27 @@
                 date: "5. Dezember 2025 • 21:00",
                 stadium: "Estadio Santiago Bernabéu, Madrid",
                 status: "BEENDET",
+                round: "Viertelfinale",
+                competition: "UEFA Champions League",
                 stats: {
                     possession: "61% - 39%",
                     shots: "16 - 7",
+                    shotsOnTarget: "9 - 4",
                     corners: "8 - 2",
-                    fouls: "9 - 14"
+                    fouls: "9 - 14",
+                    yellowCards: "1 - 3",
+                    redCards: "0 - 1",
+                    offsides: "2 - 1"
                 },
                 goals: [
                     {time: "28'", scorer: "Abdi", assist: "Elias", team: "home"},
                     {time: "61'", scorer: "Radion", assist: "Konter", team: "away"},
                     {time: "84'", scorer: "Radion", assist: "Ecke", team: "away"}
-                ]
+                ],
+                players: {
+                    home: ["Abdi (C)", "Elias", "Müller", "Schmidt", "Weber"],
+                    away: ["Radion (C)", "Borislav", "Ivanov", "Petrov", "Kovac"]
+                }
             },
             final: {
                 title: "Champions League - Finale 2025",
@@ -1397,13 +1486,23 @@
                 date: "19. Dezember 2025 • 20:00",
                 stadium: "Atatürk Olimpiyat Stadı, Istanbul",
                 status: "FINAL",
+                round: "Finale",
+                competition: "UEFA Champions League",
                 stats: {
                     possession: "-",
                     shots: "-",
+                    shotsOnTarget: "-",
                     corners: "-",
-                    fouls: "-"
+                    fouls: "-",
+                    yellowCards: "-",
+                    redCards: "-",
+                    offsides: "-"
                 },
-                goals: []
+                goals: [],
+                players: {
+                    home: ["Abdi (C)", "Elias", "Müller", "Schmidt", "Weber"],
+                    away: ["Radion (C)", "Borislav", "Ivanov", "Petrov", "Kovac"]
+                }
             },
             qualifier1: {
                 title: "European Qualifiers - Gruppe C",
@@ -1413,36 +1512,36 @@
                 date: "15. Oktober 2025 • 18:00",
                 stadium: "Vasil Levski National Stadium, Sofia",
                 status: "BEENDET",
+                round: "Gruppenphase",
+                competition: "European Qualifiers",
                 stats: {
                     possession: "38% - 62%",
                     shots: "14 - 22",
+                    shotsOnTarget: "10 - 16",
                     corners: "5 - 11",
-                    fouls: "18 - 12"
+                    fouls: "18 - 12",
+                    yellowCards: "3 - 2",
+                    redCards: "0 - 0",
+                    offsides: "4 - 3"
                 },
                 goals: [
-                    {time: "3'", scorer: "Borislav (TÜR)", assist: "Abdi", team: "away"},
-                    {time: "7'", scorer: "Popov (BUL)", assist: "Ivanov", team: "home"},
-                    {time: "11'", scorer: "Abdi (TÜR)", assist: "Radion", team: "away"},
-                    {time: "15'", scorer: "Georgiev (BUL)", assist: "Penalty", team: "home"},
-                    {time: "18'", scorer: "Radion (TÜR)", assist: "Borislav", team: "away"},
-                    {time: "23'", scorer: "Petrov (BUL)", assist: "Freistoß", team: "home"},
-                    {time: "27'", scorer: "Elias (TÜR)", assist: "Abdi", team: "away"},
-                    {time: "31'", scorer: "Ivanov (BUL)", assist: "Ecke", team: "home"},
-                    {time: "35'", scorer: "Borislav (TÜR)", assist: "Radion", team: "away"},
-                    {time: "41'", scorer: "Dimitrov (BUL)", assist: "Konter", team: "home"},
-                    {time: "45+1'", scorer: "Abdi (TÜR)", assist: "Elias", team: "away"},
-                    {time: "51'", scorer: "Radion (TÜR)", assist: "Borislav", team: "away"},
-                    {time: "58'", scorer: "Petrov (BUL)", assist: "Stojanov", team: "home"},
-                    {time: "63'", scorer: "Elias (TÜR)", assist: "Abdi", team: "away"},
-                    {time: "71'", scorer: "Borislav (TÜR)", assist: "Freistoß", team: "away"},
-                    {time: "75'", scorer: "Ivanov (BUL)", assist: "Penalty", team: "home"},
-                    {time: "78'", scorer: "Abdi (TÜR)", assist: "Radion", team: "away"},
-                    {time: "82'", scorer: "Radion (TÜR)", assist: "Elias", team: "away"},
-                    {time: "86'", scorer: "Georgiev (BUL)", assist: "Dimitrov", team: "home"},
-                    {time: "89'", scorer: "Dimitrov (BUL)", assist: "Ivanov", team: "home"},
-                    {time: "90+3'", scorer: "Stojanov (BUL)", assist: "Georgiev", team: "home"},
-                    {time: "90+5'", scorer: "Abdi (TÜR)", assist: "Borislav", team: "away"}
-                ]
+                    {time: "3'", scorer: "Borislav", assist: "Abdi", team: "away"},
+                    {time: "11'", scorer: "Abdi", assist: "Radion", team: "away"},
+                    {time: "18'", scorer: "Radion", assist: "Borislav", team: "away"},
+                    {time: "27'", scorer: "Elias", assist: "Abdi", team: "away"},
+                    {time: "35'", scorer: "Borislav", assist: "Radion", team: "away"},
+                    {time: "45+1'", scorer: "Abdi", assist: "Elias", team: "away"},
+                    {time: "51'", scorer: "Radion", assist: "Borislav", team: "away"},
+                    {time: "63'", scorer: "Elias", assist: "Abdi", team: "away"},
+                    {time: "71'", scorer: "Borislav", assist: "Freistoß", team: "away"},
+                    {time: "78'", scorer: "Abdi", assist: "Radion", team: "away"},
+                    {time: "82'", scorer: "Radion", assist: "Elias", team: "away"},
+                    {time: "90+5'", scorer: "Abdi", assist: "Borislav", team: "away"}
+                ],
+                players: {
+                    home: ["Petrov (C)", "Ivanov", "Georgiev", "Dimitrov", "Popov"],
+                    away: ["Abdi (C)", "Borislav", "Radion", "Elias", "Yılmaz"]
+                }
             },
             qualifier2: {
                 title: "European Qualifiers - Gruppe C",
@@ -1452,19 +1551,29 @@
                 date: "8. September 2025 • 20:45",
                 stadium: "Atatürk Olimpiyat Stadı, Istanbul",
                 status: "BEENDET",
+                round: "Gruppenphase",
+                competition: "European Qualifiers",
                 stats: {
                     possession: "65% - 35%",
                     shots: "19 - 4",
+                    shotsOnTarget: "12 - 1",
                     corners: "9 - 1",
-                    fouls: "8 - 16"
+                    fouls: "8 - 16",
+                    yellowCards: "1 - 4",
+                    redCards: "0 - 0",
+                    offsides: "2 - 3"
                 },
                 goals: [
-                    {time: "22'", scorer: "Radion (TÜR)", assist: "Abdi", team: "home"},
-                    {time: "34'", scorer: "Abdi (TÜR)", assist: "Borislav", team: "home"},
-                    {time: "51'", scorer: "Borislav (TÜR)", assist: "Elias", team: "home"},
-                    {time: "67'", scorer: "Elias (TÜR)", assist: "Radion", team: "home"},
-                    {time: "83'", scorer: "Radion (TÜR)", assist: "Abdi", team: "home"}
-                ]
+                    {time: "22'", scorer: "Radion", assist: "Abdi", team: "home"},
+                    {time: "34'", scorer: "Abdi", assist: "Borislav", team: "home"},
+                    {time: "51'", scorer: "Borislav", assist: "Elias", team: "home"},
+                    {time: "67'", scorer: "Elias", assist: "Radion", team: "home"},
+                    {time: "83'", scorer: "Radion", assist: "Abdi", team: "home"}
+                ],
+                players: {
+                    home: ["Abdi (C)", "Borislav", "Radion", "Elias", "Yılmaz"],
+                    away: ["Hagi (C)", "Popescu", "Mutiu", "Moldovan", "Petrescu"]
+                }
             },
             qualifier3: {
                 title: "European Qualifiers - Gruppe C",
@@ -1474,199 +1583,283 @@
                 date: "12. Oktober 2025 • 20:45",
                 stadium: "Rams Park, Istanbul",
                 status: "BEENDET",
+                round: "Gruppenphase",
+                competition: "European Qualifiers",
                 stats: {
                     possession: "58% - 42%",
                     shots: "15 - 8",
+                    shotsOnTarget: "9 - 3",
                     corners: "7 - 3",
-                    fouls: "11 - 13"
+                    fouls: "11 - 13",
+                    yellowCards: "2 - 4",
+                    redCards: "0 - 0",
+                    offsides: "1 - 2"
                 },
                 goals: [
-                    {time: "17'", scorer: "Borislav (TÜR)", assist: "Radion", team: "home"},
-                    {time: "39'", scorer: "Abdi (TÜR)", assist: "Elias", team: "home"},
-                    {time: "62'", scorer: "Elias (TÜR)", assist: "Abdi", team: "home"},
-                    {time: "78'", scorer: "Kvaratskhelia (GEO)", assist: "Mikautadze", team: "away"}
-                ]
+                    {time: "17'", scorer: "Borislav", assist: "Radion", team: "home"},
+                    {time: "39'", scorer: "Abdi", assist: "Elias", team: "home"},
+                    {time: "62'", scorer: "Elias", assist: "Abdi", team: "home"},
+                    {time: "78'", scorer: "Kvaratskhelia", assist: "Mikautadze", team: "away"}
+                ],
+                players: {
+                    home: ["Abdi (C)", "Borislav", "Radion", "Elias", "Yılmaz"],
+                    away: ["Kvaratskhelia (C)", "Mikautadze", "Mamardashvili", "Kashia", "Gagnidze"]
+                }
             },
             playoff: {
-                title: "European Qualifiers - Playoff Runde 1/2",
+                title: "European Qualifiers - Playoff",
                 team1: "TÜRKIYE",
                 team2: "GERMANY",
                 score: "VS",
                 date: "24. Dezember 2025 • 13:00",
                 stadium: "Olympiastadion, Berlin",
                 status: "PLAYOFF",
+                round: "Playoff Runde 1/2",
+                competition: "European Qualifiers",
                 stats: {
                     possession: "-",
                     shots: "-",
+                    shotsOnTarget: "-",
                     corners: "-",
-                    fouls: "-"
+                    fouls: "-",
+                    yellowCards: "-",
+                    redCards: "-",
+                    offsides: "-"
                 },
-                goals: []
+                goals: [],
+                players: {
+                    home: ["Abdi (C)", "Borislav", "Radion", "Elias", "Yılmaz"],
+                    away: ["Neuer (C)", "Müller", "Kimmich", "Gündoğan", "Sané"]
+                }
             }
         };
 
+        // DOM Elemente
+        const mainPage = document.getElementById('mainPage');
+        const matchDetailPage = document.getElementById('matchDetailPage');
+        const navItems = document.querySelectorAll('.nav-item');
+        const tournamentSections = document.querySelectorAll('.tournament-section');
+
         // Navigation zwischen Turnieren
-        document.querySelectorAll('.nav-item').forEach(item => {
+        navItems.forEach(item => {
             item.addEventListener('click', function() {
                 // Aktive Navigation aktualisieren
-                document.querySelectorAll('.nav-item').forEach(nav => {
-                    nav.classList.remove('active');
-                });
+                navItems.forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
                 
                 // Aktiven Abschnitt anzeigen
                 const tournament = this.getAttribute('data-tournament');
-                document.querySelectorAll('.tournament-section').forEach(section => {
+                tournamentSections.forEach(section => {
                     section.classList.remove('active');
                 });
                 document.getElementById(tournament).classList.add('active');
+                
+                // Zurück nach oben scrollen
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
-        
+
         // Match-Card Klick-Ereignisse
         document.querySelectorAll('.match-card').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function(e) {
+                // Verhindere doppelte Auslösung auf mobilen Geräten
+                if (e.target.closest('a')) return;
+                
                 const matchId = this.getAttribute('data-match');
                 showMatchDetail(matchId);
+                
+                // Auf mobilen Geräten Vibration hinzufügen
+                if (navigator.vibrate) {
+                    navigator.vibrate(20);
+                }
             });
         });
-        
-        // Detail-Overlay Funktionen
-        const detailOverlay = document.getElementById('matchDetailOverlay');
-        const closeDetailBtn = document.getElementById('closeDetail');
-        const detailContent = document.getElementById('detailContent');
-        const detailTitle = document.getElementById('detailTitle');
-        
-        // Overlay schließen
-        closeDetailBtn.addEventListener('click', () => {
-            detailOverlay.style.display = 'none';
-        });
-        
-        // Overlay schließen bei Klick außerhalb
-        detailOverlay.addEventListener('click', (e) => {
-            if (e.target === detailOverlay) {
-                detailOverlay.style.display = 'none';
-            }
-        });
-        
-        // ESC-Taste zum Schließen
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && detailOverlay.style.display === 'flex') {
-                detailOverlay.style.display = 'none';
-            }
-        });
-        
-        // Match-Details anzeigen
+
+        // Match-Detailseite anzeigen
         function showMatchDetail(matchId) {
             const match = matchData[matchId];
             if (!match) return;
-            
-            // Titel setzen
-            detailTitle.innerHTML = `<i class="fas fa-futbol"></i> ${match.title}`;
-            
-            // Inhalt generieren
+
+            // Detailseite erstellen
             let html = `
-                <div class="detail-teams">
-                    <div class="detail-team">
-                        <div class="detail-team-logo" style="color: ${matchId.includes('qualifier') || matchId === 'playoff' ? '#dc3545' : '#0033a0'}">
-                            ${matchId.includes('qualifier') || matchId === 'playoff' ? '<i class="fas fa-flag"></i>' : '<i class="fas fa-user-circle"></i>'}
-                        </div>
-                        <div class="detail-team-name">${match.team1}</div>
-                        <div class="team-country">${matchId.includes('qualifier') || matchId === 'playoff' ? 'Europe' : 'International'}</div>
+                <div class="detail-header">
+                    <div class="detail-header-top">
+                        <button class="back-button" onclick="hideMatchDetail()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <div class="detail-title">${match.title}</div>
+                        <div style="width: 44px;"></div> <!-- Platzhalter für Ausrichtung -->
                     </div>
                     
-                    <div class="detail-score">${match.score}</div>
-                    
-                    <div class="detail-team">
-                        <div class="detail-team-logo" style="color: ${matchId === 'qualifier1' ? '#dc3545' : matchId === 'qualifier2' ? '#ffcd00' : matchId === 'qualifier3' ? '#dc3545' : matchId === 'playoff' ? '#000000' : '#6f42c1'}">
-                            ${matchId.includes('qualifier') || matchId === 'playoff' ? '<i class="fas fa-flag"></i>' : '<i class="fas fa-user-circle"></i>'}
+                    <div class="detail-teams">
+                        <div class="detail-team">
+                            <div class="detail-team-logo" style="color: ${matchId.includes('qualifier') || matchId === 'playoff' ? '#dc3545' : '#0033a0'}">
+                                ${matchId.includes('qualifier') || matchId === 'playoff' ? '<i class="fas fa-flag"></i>' : '<i class="fas fa-user-circle"></i>'}
+                            </div>
+                            <div class="detail-team-name">${match.team1}</div>
                         </div>
-                        <div class="detail-team-name">${match.team2}</div>
-                        <div class="team-country">${matchId.includes('qualifier') || matchId === 'playoff' ? 'Europe' : 'International'}</div>
+                        
+                        <div class="detail-score">${match.score}</div>
+                        
+                        <div class="detail-team">
+                            <div class="detail-team-logo" style="color: ${matchId === 'qualifier1' ? '#dc3545' : matchId === 'qualifier2' ? '#ffcd00' : matchId === 'qualifier3' ? '#dc3545' : matchId === 'playoff' ? '#000000' : '#6f42c1'}">
+                                ${matchId.includes('qualifier') || matchId === 'playoff' ? '<i class="fas fa-flag"></i>' : '<i class="fas fa-user-circle"></i>'}
+                            </div>
+                            <div class="detail-team-name">${match.team2}</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="detail-info">
-                    <div class="info-box">
-                        <div class="info-title"><i class="far fa-calendar"></i> Datum & Uhrzeit</div>
-                        <div class="info-value">${match.date}</div>
+                <div class="detail-content">
+                    <!-- Match Info -->
+                    <div class="detail-section">
+                        <div class="section-title">
+                            <i class="fas fa-info-circle"></i> Spielinformationen
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Datum & Uhrzeit</div>
+                                <div class="info-value">${match.date}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Stadion</div>
+                                <div class="info-value">${match.stadium}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Status</div>
+                                <div class="info-value">${match.status}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Runde</div>
+                                <div class="info-value">${match.round}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Wettbewerb</div>
+                                <div class="info-value">${match.competition}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="info-box">
-                        <div class="info-title"><i class="fas fa-map-marker-alt"></i> Stadion</div>
-                        <div class="info-value">${match.stadium}</div>
+                    
+                    <!-- Statistiken -->
+                    <div class="detail-section">
+                        <div class="section-title">
+                            <i class="fas fa-chart-bar"></i> Statistiken
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${match.stats.possession.split('-')[0].trim()}</div>
+                                <div class="stat-label">Ballbesitz</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${match.stats.shots.split('-')[0].trim()}</div>
+                                <div class="stat-label">Schüsse</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${match.stats.shotsOnTarget.split('-')[0].trim()}</div>
+                                <div class="stat-label">Schüsse auf Tor</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${match.stats.corners.split('-')[0].trim()}</div>
+                                <div class="stat-label">Ecken</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="info-box">
-                        <div class="info-title"><i class="fas fa-flag"></i> Status</div>
-                        <div class="info-value">${match.status}</div>
-                    </div>
-                </div>
-                
-                <div class="detail-info">
-                    <div class="info-box">
-                        <div class="info-title"><i class="fas fa-chart-pie"></i> Ballbesitz</div>
-                        <div class="info-value">${match.stats.possession}</div>
-                    </div>
-                    <div class="info-box">
-                        <div class="info-title"><i class="fas fa-bullseye"></i> Schüsse</div>
-                        <div class="info-value">${match.stats.shots}</div>
-                    </div>
-                    <div class="info-box">
-                        <div class="info-title"><i class="fas fa-futbol"></i> Ecken</div>
-                        <div class="info-value">${match.stats.corners}</div>
-                    </div>
-                    <div class="info-box">
-                        <div class="info-title"><i class="fas fa-exclamation-triangle"></i> Fouls</div>
-                        <div class="info-value">${match.stats.fouls}</div>
-                    </div>
-                </div>
             `;
-            
+
             // Tore anzeigen, falls vorhanden
             if (match.goals.length > 0) {
                 html += `
-                    <div class="detail-goals">
-                        <div class="goals-section">
-                            <div class="goals-section-title">
-                                <i class="fas fa-futbol"></i> Tore & Spielverlauf
-                            </div>
+                    <div class="detail-section">
+                        <div class="section-title">
+                            <i class="fas fa-futbol"></i> Tore & Spielverlauf
+                        </div>
+                        <div class="goals-list">
                 `;
                 
                 match.goals.forEach(goal => {
-                    const teamClass = goal.team === 'home' ? 'style="color: #0033a0;"' : 'style="color: #dc3545;"';
+                    const teamClass = goal.team === 'home' ? 'team-home' : 'team-away';
+                    const teamText = goal.team === 'home' ? 'H' : 'A';
                     html += `
-                        <div class="goal-detail-item">
-                            <div class="goal-detail-time">${goal.time}</div>
-                            <div class="goal-detail-scorer" ${teamClass}>${goal.scorer}</div>
-                            <div class="goal-detail-assist">${goal.assist}</div>
+                        <div class="goal-item">
+                            <div class="goal-time">${goal.time}</div>
+                            <div class="goal-details">
+                                <div class="goal-scorer">${goal.scorer}</div>
+                                <div class="goal-assist">Vorlage: ${goal.assist}</div>
+                            </div>
+                            <div class="goal-team ${teamClass}">${teamText}</div>
                         </div>
                     `;
                 });
                 
                 html += `</div></div>`;
             }
-            
-            // Für Spiele ohne Tore (zukünftige Spiele)
+
+            // Für zukünftige Spiele
             if (match.goals.length === 0) {
                 html += `
-                    <div class="detail-goals">
-                        <div class="goals-section">
-                            <div class="goals-section-title">
-                                <i class="fas fa-info-circle"></i> Spielinformation
-                            </div>
-                            <div class="goal-detail-item">
-                                <div class="goal-detail-scorer" style="color: #0033a0; text-align: center; width: 100%;">
-                                    Dieses Spiel hat noch nicht stattgefunden. Die Details werden nach Spielende verfügbar sein.
-                                </div>
-                            </div>
+                    <div class="detail-section">
+                        <div class="section-title">
+                            <i class="fas fa-clock"></i> Bevorstehendes Spiel
+                        </div>
+                        <div class="no-content">
+                            <i class="far fa-calendar-check"></i>
+                            <p>Dieses Spiel hat noch nicht stattgefunden. Die Details werden nach Spielende verfügbar sein.</p>
                         </div>
                     </div>
                 `;
             }
+
+            // Spielerliste
+            html += `
+                <div class="detail-section">
+                    <div class="section-title">
+                        <i class="fas fa-users"></i> Wichtige Spieler
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">${match.team1}</div>
+                            <div class="info-value">${match.players.home.slice(0, 3).join('<br>')}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">${match.team2}</div>
+                            <div class="info-value">${match.players.away.slice(0, 3).join('<br>')}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            html += `</div>`;
+            matchDetailPage.innerHTML = html;
             
-            detailContent.innerHTML = html;
-            detailOverlay.style.display = 'flex';
+            // Hauptseite ausblenden und Detailseite anzeigen
+            mainPage.style.display = 'none';
+            matchDetailPage.style.display = 'block';
+            
+            // Zurück nach oben scrollen
+            matchDetailPage.scrollTop = 0;
+            
+            // History-Eintrag hinzufügen für Browser-Zurück-Button
+            history.pushState({ page: 'matchDetail', matchId: matchId }, '', `#match-${matchId}`);
         }
-        
+
+        // Match-Detailseite ausblenden
+        function hideMatchDetail() {
+            mainPage.style.display = 'block';
+            matchDetailPage.style.display = 'none';
+            
+            // History-Eintrag für Hauptseite
+            history.pushState({ page: 'main' }, '', '#');
+        }
+
+        // Browser-Zurück-Button behandeln
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page === 'main') {
+                hideMatchDetail();
+            } else if (event.state && event.state.page === 'matchDetail') {
+                showMatchDetail(event.state.matchId);
+            }
+        });
+
         // Initialisierung
         document.addEventListener('DOMContentLoaded', function() {
             // Aktuelles Datum setzen
@@ -1675,15 +1868,40 @@
             const dateString = today.toLocaleDateString('de-DE', options);
             document.querySelector('.uefa-date').textContent = dateString;
             
-            // Finale-Match spezielle Animation
-            const finalMatch = document.querySelector('.match-card[data-match="final"]');
-            if (finalMatch) {
-                setInterval(() => {
-                    finalMatch.style.boxShadow = '0 0 25px rgba(255, 205, 0, 0.5)';
-                    setTimeout(() => {
-                        finalMatch.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.08)';
-                    }, 500);
-                }, 2000);
+            // Browser-Zurück-Button bei Start behandeln
+            if (window.location.hash.startsWith('#match-')) {
+                const matchId = window.location.hash.replace('#match-', '');
+                showMatchDetail(matchId);
+            }
+            
+            // Touch-Optimierung für mobile Geräte
+            document.addEventListener('touchstart', function() {}, { passive: true });
+            
+            // Verhindern, dass lange Taps Kontextmenü öffnen
+            document.addEventListener('contextmenu', function(e) {
+                if (e.target.closest('.match-card')) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Für mobile Geräte: Back-Button auch mit Swipe unterstützen
+        let touchStartX = 0;
+        document.addEventListener('touchstart', function(e) {
+            if (matchDetailPage.style.display === 'block') {
+                touchStartX = e.touches[0].clientX;
+            }
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (matchDetailPage.style.display === 'block') {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                
+                // Rechts nach Links Swipe (zurück)
+                if (diff > 100) {
+                    hideMatchDetail();
+                }
             }
         });
     </script>
