@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UEFA Champions League - Viertelfinale</title>
+    <title>UEFA Champions League Finale 2025 - Live</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,18 +35,8 @@
             margin-bottom: 30px;
         }
         
-        .uefa-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .uefa-logo img {
-            height: 60px;
-        }
-        
         .tournament-title {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             background: linear-gradient(to right, #fff 0%, #d4af37 100%);
             -webkit-background-clip: text;
@@ -56,11 +46,21 @@
         }
         
         .match-info {
-            text-align: center;
+            text-align: right;
             background-color: rgba(0, 0, 0, 0.3);
             padding: 12px 25px;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .match-info div {
+            margin-bottom: 5px;
+        }
+        
+        .match-info i {
+            margin-right: 8px;
+            color: #d4af37;
         }
         
         /* Match Center */
@@ -70,10 +70,11 @@
             align-items: center;
             background: rgba(0, 10, 30, 0.7);
             border-radius: 15px;
-            padding: 30px;
+            padding: 40px 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
         
         .team {
@@ -83,65 +84,74 @@
         }
         
         .team-name {
-            font-size: 32px;
+            font-size: 42px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
-        .team-logo {
-            width: 150px;
-            height: 150px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        .team-name.home {
+            color: #4cc9f0;
         }
         
-        .team-logo i {
-            font-size: 80px;
-            color: #001b42;
+        .team-name.away {
+            color: #f72585;
+        }
+        
+        .score-container {
+            position: relative;
+            margin: 0 50px;
+            text-align: center;
         }
         
         .score {
-            font-size: 72px;
+            font-size: 100px;
             font-weight: bold;
-            margin: 0 40px;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .score-divider {
+            font-size: 80px;
+            opacity: 0.7;
         }
         
         /* Match Time */
         .match-time {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
         }
         
         .time-display {
             display: inline-block;
             background-color: #0c7c42;
             color: white;
-            font-size: 36px;
+            font-size: 48px;
             font-weight: bold;
-            padding: 10px 40px;
+            padding: 15px 60px;
             border-radius: 50px;
             margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+            letter-spacing: 2px;
+            min-width: 180px;
         }
         
         .match-status {
-            font-size: 18px;
+            font-size: 24px;
             color: #d4af37;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+        
+        .final-result {
+            font-size: 22px;
+            color: #ffcc00;
+            margin-top: 10px;
+            font-weight: bold;
         }
         
         /* Match Events */
@@ -155,38 +165,59 @@
         }
         
         .events-title {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
             color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .events-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         
         .event {
             display: flex;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 8px;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s forwards;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
         }
         
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .event.new {
+            background: rgba(13, 110, 253, 0.2);
+            border-left: 4px solid #0d6efd;
+            animation: pulse-new 2s infinite;
+        }
+        
+        @keyframes pulse-new {
+            0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(13, 110, 253, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); }
         }
         
         .event-time {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
             margin-right: 20px;
             min-width: 80px;
             text-align: center;
+            font-size: 18px;
         }
         
         .event-icon {
@@ -196,80 +227,81 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 15px;
+            margin-right: 20px;
             font-size: 18px;
         }
         
         .goal-home {
-            background-color: #1e7e34;
+            background-color: rgba(76, 201, 240, 0.3);
+            color: #4cc9f0;
         }
         
         .goal-away {
-            background-color: #dc3545;
+            background-color: rgba(247, 37, 133, 0.3);
+            color: #f72585;
+        }
+        
+        .yellow-card {
+            background-color: rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+        }
+        
+        .red-card {
+            background-color: rgba(220, 53, 69, 0.3);
+            color: #dc3545;
+        }
+        
+        .substitution {
+            background-color: rgba(32, 201, 151, 0.3);
+            color: #20c997;
         }
         
         .event-description {
-            font-size: 18px;
+            font-size: 20px;
             flex: 1;
         }
         
-        .home-event {
-            justify-content: flex-start;
+        .home-event .event-description {
+            color: #4cc9f0;
         }
         
-        .away-event {
-            justify-content: flex-end;
+        .away-event .event-description {
+            color: #f72585;
         }
         
-        .away-event .event {
-            flex-direction: row-reverse;
-        }
-        
-        .away-event .event-time,
-        .away-event .event-icon {
-            margin-right: 0;
-            margin-left: 20px;
-        }
-        
-        /* Controls */
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .control-btn {
-            background: linear-gradient(to right, #0c7c42, #0a5c32);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
+        /* Live Indicator */
+        .live-indicator {
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+            background-color: #e63946;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 15px;
+            animation: blink 1.5s infinite;
         }
         
-        .control-btn:hover {
-            background: linear-gradient(to right, #0a5c32, #083c22);
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
         }
         
-        .control-btn:active {
-            transform: translateY(0);
+        .live-indicator::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse-red 2s infinite;
         }
         
-        .control-btn.reset {
-            background: linear-gradient(to right, #dc3545, #a71d2a);
-        }
-        
-        .control-btn.reset:hover {
-            background: linear-gradient(to right, #a71d2a, #7a1520);
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
         
         /* Footer */
@@ -280,41 +312,56 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.7);
             font-size: 14px;
+            line-height: 1.6;
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
+            .uefa-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .match-info {
+                text-align: center;
+            }
+            
             .match-center {
                 flex-direction: column;
                 padding: 20px;
             }
             
-            .team {
-                padding: 10px;
-            }
-            
             .team-name {
-                font-size: 24px;
+                font-size: 32px;
             }
             
-            .team-logo {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .team-logo i {
-                font-size: 50px;
-            }
-            
-            .score {
-                font-size: 48px;
+            .score-container {
                 margin: 20px 0;
                 order: -1;
             }
             
+            .score {
+                font-size: 70px;
+            }
+            
             .time-display {
-                font-size: 24px;
-                padding: 8px 25px;
+                font-size: 32px;
+                padding: 12px 40px;
+            }
+            
+            .match-status {
+                font-size: 18px;
+            }
+            
+            .event {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .event-time {
+                margin-right: 0;
             }
         }
     </style>
@@ -323,332 +370,390 @@
     <div class="container">
         <!-- UEFA Header -->
         <header class="uefa-header">
-            <div class="uefa-logo">
-                <div class="tournament-title">UEFA CHAMPIONS LEAGUE</div>
-            </div>
+            <div class="tournament-title">UEFA CHAMPIONS LEAGUE FINALE 2025</div>
             <div class="match-info">
-                <div>Finale 2025</div>
-                <div><i class="fas fa-calendar-alt"></i> Fraitag, 19. Dezember 2025</div>
+                <div><i class="fas fa-trophy"></i> Finale 2025</div>
+                <div><i class="fas fa-calendar-alt"></i> Freitag, 19. Dezember 2025</div>
                 <div><i class="fas fa-map-marker-alt"></i> Atatürk Olimpiyat Stadı, Istanbul</div>
             </div>
         </header>
         
         <!-- Match Time Display -->
         <div class="match-time">
-            <div class="time-display" id="match-minute">1'</div>
-            <div class="match-status" id="match-status">Läuft</div>
+            <div class="time-display" id="match-minute">0'</div>
+            <div class="match-status" id="match-status">SPIEL BEGLEITUNG</div>
+            <div class="final-result" id="final-result"></div>
         </div>
         
         <!-- Match Center -->
         <div class="match-center">
             <div class="team">
-                <div class="team-name">ABDI</div>
-                <div class="team-logo">
-                    <i class="fas fa-futbol"></i>
+                <div class="team-name home">ABDI</div>
+                <div class="team-stats">
+                    <div>Besitz: 54%</div>
+                    <div>Schüsse: 14</div>
+                    <div>Ecken: 6</div>
                 </div>
-                <div class="team-info">Heimmannschaft</div>
             </div>
             
-            <div class="score" id="score">3 - 2</div>
+            <div class="score-container">
+                <div class="score" id="score">0 - 0</div>
+                <div class="match-clock">
+                    <span class="live-indicator">LIVE</span>
+                </div>
+            </div>
             
             <div class="team">
-                <div class="team-name">BORISLAV</div>
-                <div class="team-logo">
-                    <i class="fas fa-football-ball"></i>
+                <div class="team-name away">BORISLAV</div>
+                <div class="team-stats">
+                    <div>Besitz: 46%</div>
+                    <div>Schüsse: 9</div>
+                    <div>Ecken: 4</div>
                 </div>
-                <div class="team-info">Gastmannschaft</div>
             </div>
         </div>
         
         <!-- Match Events -->
         <div class="match-events">
-            <h2 class="events-title">Spielereignisse</h2>
+            <h2 class="events-title">Spielereignisse <span class="live-indicator">LIVE</span></h2>
             
-            <!-- Home Events (Left side) -->
-            <div class="events-container">
-                <div class="home-event">
-                    <div class="event" id="event-1">
-                        <div class="event-time">8'</div>
-                        <div class="event-icon goal-home">
-                            <i class="fas fa-futbol"></i>
-                        </div>
-                        <div class="event-description">Tor! Abdi führt 1-0. Großartiger Schuss von außerhalb des Strafraums.</div>
-                    </div>
-                </div>
-                
-                <div class="home-event">
-                    <div class="event" id="event-2">
-                        <div class="event-time">22'</div>
-                        <div class="event-icon goal-home">
-                            <i class="fas fa-futbol"></i>
-                        </div>
-                        <div class="event-description">Tor! Abdi führt 2-0. Kopfball nach einer präzisen Flanke.</div>
-                    </div>
-                </div>
-                
-                <!-- Away Events (Right side) -->
-                <div class="away-event">
-                    <div class="event" id="event-3">
-                        <div class="event-time">26'</div>
-                        <div class="event-icon goal-away">
-                            <i class="fas fa-football-ball"></i>
-                        </div>
-                        <div class="event-description">Tor! Borislav verkürzt auf 2-1. Strafstoß verwandelt.</div>
-                    </div>
-                </div>
-                
-                <div class="away-event">
-                    <div class="event" id="event-4">
-                        <div class="event-time">45+2'</div>
-                        <div class="event-icon goal-away">
-                            <i class="fas fa-football-ball"></i>
-                        </div>
-                        <div class="event-description">Tor! Borislav gleicht aus! 2-2 in der Nachspielzeit.</div>
-                    </div>
-                </div>
-                
-                <div class="home-event">
-                    <div class="event" id="event-5">
-                        <div class="event-time">68'</div>
-                        <div class="event-icon goal-home">
-                            <i class="fas fa-futbol"></i>
-                        </div>
-                        <div class="event-description">Tor! Abdi führt wieder 3-2! Einzelaktion nach einem Dribbling.</div>
-                    </div>
-                </div>
+            <div class="events-container" id="events-container">
+                <!-- Events werden live hinzugefügt -->
             </div>
-        </div>
-        
-        <!-- Controls -->
-        <div class="controls">
-            <button class="control-btn" id="start-btn">
-                <i class="fas fa-play"></i> Spiel starten
-            </button>
-            <button class="control-btn reset" id="reset-btn">
-                <i class="fas fa-redo"></i> Zurücksetzen
-            </button>
         </div>
         
         <!-- Footer -->
         <div class="footer">
-            <p>Offizielle UEFA Champions League | Alle Rechte vorbehalten</p>
-            <p>Diese Seite ist eine FanMade und nicht mit der UEFA verbunden.</p>
+            <p>UEFA CHAMPIONS LEAGUE FINALE 2025 - OFFIZIELLE LIVE-BEGLEITUNG</p>
+            <p>Atatürk Olimpiyat Stadı, Istanbul | Freitag, 19. Dezember 2025 | 21:00 MEZ</p>
+            <p>Alle Rechte vorbehalten © UEFA 2025</p>
         </div>
     </div>
 
     <script>
         // Spielzustand
         let gameState = {
-            minute: 1,
-            isRunning: false,
-            interval: null,
-            events: [
-                {minute: 8, team: 'home', id: 'event-1'},
-                {minute: 22, team: 'home', id: 'event-2'},
-                {minute: 26, team: 'away', id: 'event-3'},
-                {minute: 47, team: 'away', id: 'event-4'}, // 45+2 = 47
-                {minute: 68, team: 'home', id: 'event-5'}
+            currentMinute: 0,
+            isFinished: false,
+            homeScore: 0,
+            awayScore: 0,
+            events: [],
+            matchEvents: [
+                {minute: 1, type: 'kickoff', description: 'Anpfiff! Das Finale der UEFA Champions League 2025 beginnt.', team: 'none'},
+                {minute: 8, type: 'goal', description: 'TOR FÜR ABDI! Großartiger Distanzschuss landet im rechten Winkel.', team: 'home'},
+                {minute: 15, type: 'yellow', description: 'Gelbe Karte für Martinez (Borislav). Harte Grätsche.', team: 'away'},
+                {minute: 22, type: 'goal', description: 'TOR FÜR ABDI! Kopfball nach einer präzisen Flanke von rechts.', team: 'home'},
+                {minute: 26, type: 'goal', description: 'TOR FÜR BORISLAV! Strafstoß verwandelt nach Handspiel.', team: 'away'},
+                {minute: 34, type: 'substitution', description: 'Erste Wechsel: Rodriguez kommt für Silva (Borislav).', team: 'away'},
+                {minute: 41, type: 'yellow', description: 'Gelbe Karte für Schmidt (Abdi). Zeitverzögerung.', team: 'home'},
+                {minute: 45, type: 'extra', description: '2 Minuten Nachspielzeit angezeigt.', team: 'none'},
+                {minute: 47, type: 'goal', description: 'TOR FÜR BORISLAV! Ausgleich in der Nachspielzeit!', team: 'away'},
+                {minute: 45, type: 'halftime', description: 'Halbzeit! Spektakuläre erste Hälfte endet 2:2.', team: 'none'},
+                {minute: 46, type: 'kickoff', description: 'Zweite Halbzeit beginnt!', team: 'none'},
+                {minute: 53, type: 'substitution', description: 'Wechsel bei Abdi: Müller kommt für Schmidt.', team: 'home'},
+                {minute: 61, type: 'yellow', description: 'Gelbe Karte für Kovac (Borislav). Foul am Strafraum.', team: 'away'},
+                {minute: 68, type: 'goal', description: 'TOR FÜR ABDI! Einzelaktion nach Dribbling durch drei Spieler!', team: 'home'},
+                {minute: 75, type: 'substitution', description: 'Doppelwechsel bei Borislav: Petrov und Ivanov kommen.', team: 'away'},
+                {minute: 82, type: 'red', description: 'ROTE KARTE für Sanchez (Borislav!). Notbremse an der Strafraumgrenze.', team: 'away'},
+                {minute: 85, type: 'substitution', description: 'Letzter Wechsel bei Abdi: Fischer kommt für Weber.', team: 'home'},
+                {minute: 89, type: 'extra', description: '4 Minuten Nachspielzeit angezeigt.', team: 'none'},
+                {minute: 90, type: 'fulltime', description: 'Das Spiel ist beendet!', team: 'none'}
             ],
-            completedEvents: []
+            addedEvents: []
         };
         
         // DOM Elemente
         const minuteDisplay = document.getElementById('match-minute');
         const matchStatus = document.getElementById('match-status');
-        const startBtn = document.getElementById('start-btn');
-        const resetBtn = document.getElementById('reset-btn');
+        const finalResult = document.getElementById('final-result');
         const scoreDisplay = document.getElementById('score');
+        const eventsContainer = document.getElementById('events-container');
         
-        // Tore zählen
-        let homeGoals = 0;
-        let awayGoals = 0;
-        
-        // Spiel starten/pausieren
-        startBtn.addEventListener('click', function() {
-            if (!gameState.isRunning) {
-                startGame();
-                startBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-            } else {
-                pauseGame();
-                startBtn.innerHTML = '<i class="fas fa-play"></i> Fortsetzen';
-            }
-        });
-        
-        // Spiel zurücksetzen
-        resetBtn.addEventListener('click', resetGame);
-        
-        // Spiel starten Funktion
-        function startGame() {
-            gameState.isRunning = true;
-            matchStatus.textContent = "Läuft";
+        // Spiel starten
+        function startMatch() {
+            matchStatus.textContent = "1. HALBZEIT";
+            matchStatus.style.color = "#4cc9f0";
             
-            gameState.interval = setInterval(() => {
-                gameState.minute++;
-                
-                // Nach 90+ Minuten stoppen
-                if (gameState.minute > 93) {
-                    endGame();
+            // Spielminutenzähler (1 Sekunde = 1 Minute Spielzeit für Demo)
+            const gameInterval = setInterval(() => {
+                if (gameState.currentMinute >= 90 || gameState.isFinished) {
+                    clearInterval(gameInterval);
+                    if (!gameState.isFinished) {
+                        endMatch();
+                    }
                     return;
                 }
                 
-                updateMinuteDisplay();
-                checkEvents();
+                gameState.currentMinute++;
                 
-                // Endstand anzeigen, wenn 90 Minuten erreicht sind
-                if (gameState.minute === 90) {
-                    matchStatus.textContent = "Abpfiff";
-                    matchStatus.style.color = "#ffcc00";
+                // Halbzeit erkennen
+                if (gameState.currentMinute === 46) {
+                    matchStatus.textContent = "2. HALBZEIT";
+                    matchStatus.style.color = "#f72585";
                 }
-            }, 1000); // 1 Sekunde = 1 Spielminute (beschleunigt)
-        }
-        
-        // Spiel pausieren
-        function pauseGame() {
-            gameState.isRunning = false;
-            clearInterval(gameState.interval);
-            matchStatus.textContent = "Pause";
-            matchStatus.style.color = "#d4af37";
-        }
-        
-        // Spiel zurücksetzen
-        function resetGame() {
-            pauseGame();
-            
-            gameState.minute = 1;
-            gameState.completedEvents = [];
-            
-            // Alle Ereignisse ausblenden
-            gameState.events.forEach(event => {
-                const eventElement = document.getElementById(event.id);
-                eventElement.style.opacity = "0";
-                eventElement.style.transform = "translateY(20px)";
-            });
-            
-            // Reset Tore
-            homeGoals = 0;
-            awayGoals = 0;
-            updateScore();
-            
-            // Reset Anzeigen
-            updateMinuteDisplay();
-            matchStatus.textContent = "Noch nicht gestartet";
-            matchStatus.style.color = "#d4af37";
-            startBtn.innerHTML = '<i class="fas fa-play"></i> Spiel starten';
-            
-            // Grüne Minutenanzeige zurücksetzen
-            minuteDisplay.style.backgroundColor = "#0c7c42";
+                
+                // Endphase erkennen
+                if (gameState.currentMinute >= 85) {
+                    minuteDisplay.style.backgroundColor = "#e63946";
+                } else if (gameState.currentMinute >= 75) {
+                    minuteDisplay.style.backgroundColor = "#f4a261";
+                }
+                
+                updateMinuteDisplay();
+                checkForEvents();
+                
+            }, 800); // 800ms = 1 Spielminute (beschleunigt für Demo)
         }
         
         // Minute aktualisieren
         function updateMinuteDisplay() {
-            let displayMinute = gameState.minute;
+            let displayMinute = gameState.currentMinute;
             
             // Nachspielzeit anzeigen
-            if (gameState.minute > 45 && gameState.minute <= 47) {
-                minuteDisplay.textContent = "45+" + (gameState.minute - 45) + "'";
-            } else if (gameState.minute > 90) {
-                minuteDisplay.textContent = "90+" + (gameState.minute - 90) + "'";
+            if (gameState.currentMinute > 45 && gameState.currentMinute <= 47) {
+                minuteDisplay.textContent = "45+" + (gameState.currentMinute - 45) + "'";
+            } else if (gameState.currentMinute > 90 && gameState.currentMinute <= 94) {
+                minuteDisplay.textContent = "90+" + (gameState.currentMinute - 90) + "'";
+            } else if (gameState.currentMinute > 94) {
+                minuteDisplay.textContent = "90+4'";
             } else {
                 minuteDisplay.textContent = displayMinute + "'";
-            }
-            
-            // Farbe basierend auf der Minute ändern
-            if (gameState.minute > 90) {
-                minuteDisplay.style.backgroundColor = "#e63946"; // Rot für Nachspielzeit
-            } else if (gameState.minute > 80) {
-                minuteDisplay.style.backgroundColor = "#f4a261"; // Orange für Schlussphase
-            } else {
-                minuteDisplay.style.backgroundColor = "#0c7c42"; // Grün für normale Spielzeit
             }
         }
         
         // Ereignisse prüfen
-        function checkEvents() {
-            gameState.events.forEach(event => {
-                if (gameState.minute === event.minute && 
-                    !gameState.completedEvents.includes(event.id)) {
+        function checkForEvents() {
+            gameState.matchEvents.forEach(event => {
+                if (gameState.currentMinute === event.minute && 
+                    !gameState.addedEvents.includes(event.minute + event.type)) {
                     
-                    // Ereignis anzeigen
-                    showEvent(event.id);
+                    // Ereignis hinzufügen
+                    addEvent(event);
                     
                     // Tor zählen
-                    if (event.team === 'home') {
-                        homeGoals++;
-                    } else {
-                        awayGoals++;
+                    if (event.type === 'goal') {
+                        if (event.team === 'home') {
+                            gameState.homeScore++;
+                        } else if (event.team === 'away') {
+                            gameState.awayScore++;
+                        }
+                        updateScore();
+                        triggerGoalAnimation(event.team);
                     }
                     
-                    // Score aktualisieren
-                    updateScore();
-                    
-                    // Ereignis als abgeschlossen markieren
-                    gameState.completedEvents.push(event.id);
+                    // Ereignis als hinzugefügt markieren
+                    gameState.addedEvents.push(event.minute + event.type);
                 }
             });
         }
         
-        // Ereignis anzeigen mit Animation
-        function showEvent(eventId) {
-            const eventElement = document.getElementById(eventId);
+        // Ereignis zur Anzeige hinzufügen
+        function addEvent(event) {
+            const eventElement = document.createElement('div');
+            let iconClass = '';
+            let icon = '';
             
-            // Animationen zurücksetzen
-            eventElement.style.animation = 'none';
-            eventElement.offsetHeight; // Trigger reflow
-            eventElement.style.animation = 'fadeInUp 0.8s forwards';
+            // Ereignistyp bestimmen
+            switch(event.type) {
+                case 'goal':
+                    iconClass = event.team === 'home' ? 'goal-home' : 'goal-away';
+                    icon = '<i class="fas fa-futbol"></i>';
+                    break;
+                case 'yellow':
+                    iconClass = 'yellow-card';
+                    icon = '<i class="fas fa-square"></i>';
+                    break;
+                case 'red':
+                    iconClass = 'red-card';
+                    icon = '<i class="fas fa-square"></i>';
+                    break;
+                case 'substitution':
+                    iconClass = 'substitution';
+                    icon = '<i class="fas fa-exchange-alt"></i>';
+                    break;
+                default:
+                    iconClass = 'goal-home';
+                    icon = '<i class="fas fa-info-circle"></i>';
+            }
             
-            // Spezielle Tor-Animation
-            if (eventId.includes('event')) {
-                const icon = eventElement.querySelector('.event-icon');
-                icon.style.transform = 'scale(1.2)';
-                
+            // Event-Klasse bestimmen
+            let eventClass = '';
+            if (event.team === 'home') {
+                eventClass = 'home-event';
+            } else if (event.team === 'away') {
+                eventClass = 'away-event';
+            }
+            
+            // Event-HTML erstellen
+            eventElement.className = `event ${eventClass} new`;
+            eventElement.innerHTML = `
+                <div class="event-time">${event.minute}'</div>
+                <div class="event-icon ${iconClass}">${icon}</div>
+                <div class="event-description">${event.description}</div>
+            `;
+            
+            // Event zum Container hinzufügen
+            eventsContainer.prepend(eventElement);
+            
+            // Nach 5 Sekunden "new" Klasse entfernen
+            setTimeout(() => {
+                eventElement.classList.remove('new');
+            }, 5000);
+            
+            // Event nach 0.1s sichtbar machen
+            setTimeout(() => {
+                eventElement.classList.add('visible');
+            }, 100);
+            
+            // Für Halbzeit/Spielende Status aktualisieren
+            if (event.type === 'halftime') {
                 setTimeout(() => {
-                    icon.style.transform = 'scale(1)';
-                    icon.style.transition = 'transform 0.3s ease';
-                }, 300);
-                
-                // Score kurz hervorheben
-                scoreDisplay.style.transform = 'scale(1.2)';
-                scoreDisplay.style.color = '#ffcc00';
-                
-                setTimeout(() => {
-                    scoreDisplay.style.transform = 'scale(1)';
-                    scoreDisplay.style.color = 'white';
-                    scoreDisplay.style.transition = 'all 0.5s ease';
+                    matchStatus.textContent = "HALBZEIT";
+                    matchStatus.style.color = "#ffcc00";
                 }, 500);
             }
         }
         
         // Score aktualisieren
         function updateScore() {
-            scoreDisplay.textContent = `${homeGoals} - ${awayGoals}`;
+            scoreDisplay.textContent = `${gameState.homeScore} - ${gameState.awayScore}`;
+            
+            // Score Animation
+            scoreDisplay.style.transform = 'scale(1.2)';
+            scoreDisplay.style.color = '#ffcc00';
+            
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'scale(1)';
+                scoreDisplay.style.color = 'white';
+                scoreDisplay.style.transition = 'all 0.5s ease';
+            }, 500);
+        }
+        
+        // Tor-Animation
+        function triggerGoalAnimation(team) {
+            const teamName = team === 'home' ? 'ABDI' : 'BORISLAV';
+            const goalColor = team === 'home' ? '#4cc9f0' : '#f72585';
+            
+            // Temporäre Tor-Anzeige
+            const goalFlash = document.createElement('div');
+            goalFlash.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 80px;
+                font-weight: bold;
+                color: ${goalColor};
+                z-index: 1000;
+                opacity: 0;
+                text-shadow: 0 0 20px rgba(255,255,255,0.8);
+                pointer-events: none;
+            `;
+            goalFlash.textContent = 'TOR!';
+            document.body.appendChild(goalFlash);
+            
+            // Animation
+            let opacity = 0;
+            let scale = 0.5;
+            const animate = () => {
+                opacity += 0.05;
+                scale += 0.05;
+                goalFlash.style.opacity = opacity;
+                goalFlash.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                
+                if (opacity < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    // Ausblenden
+                    setTimeout(() => {
+                        let fadeOut = setInterval(() => {
+                            opacity -= 0.05;
+                            goalFlash.style.opacity = opacity;
+                            if (opacity <= 0) {
+                                clearInterval(fadeOut);
+                                document.body.removeChild(goalFlash);
+                            }
+                        }, 50);
+                    }, 800);
+                }
+            };
+            animate();
         }
         
         // Spiel beenden
-        function endGame() {
-            pauseGame();
-            matchStatus.textContent = "Spiel beendet";
+        function endMatch() {
+            gameState.isFinished = true;
+            matchStatus.textContent = "SPIEL BEENDET";
             matchStatus.style.color = "#e63946";
             minuteDisplay.style.backgroundColor = "#6a040f";
-            startBtn.disabled = true;
-            startBtn.style.opacity = "0.5";
-            startBtn.style.cursor = "not-allowed";
             
             // Endstand anzeigen
+            finalResult.textContent = `ENDSTAND: ABDI ${gameState.homeScore} - ${gameState.awayScore} BORISLAV`;
+            finalResult.style.color = "#ffcc00";
+            
+            // Letztes Event: Spielende
             setTimeout(() => {
-                alert("Spielende! Endstand: Abdi " + homeGoals + " - " + awayGoals + " Borislav");
-            }, 500);
+                addEvent({
+                    minute: 90,
+                    type: 'fulltime',
+                    description: 'Das Spiel ist beendet! Abdi gewinnt das UEFA Champions League Finale 2025!',
+                    team: 'none'
+                });
+                
+                // Konfetti-Effekt nach Spielende
+                setTimeout(() => {
+                    createConfetti();
+                }, 1500);
+            }, 1000);
+        }
+        
+        // Konfetti-Effekt für Spielende
+        function createConfetti() {
+            const colors = ['#4cc9f0', '#f72585', '#ffcc00', '#0c7c42', '#ffffff'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background-color: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    top: -20px;
+                    left: ${Math.random() * 100}vw;
+                    z-index: 999;
+                    opacity: 0.9;
+                    transform: rotate(${Math.random() * 360}deg);
+                `;
+                document.body.appendChild(confetti);
+                
+                // Animation
+                const animation = confetti.animate([
+                    { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 3000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                // Nach Animation entfernen
+                animation.onfinish = () => {
+                    document.body.removeChild(confetti);
+                };
+            }
         }
         
         // Initialisierung
         function init() {
-            updateMinuteDisplay();
-            updateScore();
-            
-            // Erstes Ereignis vorbereiten (wird bei Minute 8 angezeigt)
+            // Erstes Event (Anpfiff) sofort anzeigen
             setTimeout(() => {
-                const firstEvent = document.getElementById('event-1');
-                firstEvent.style.opacity = "0.3"; // Geringe Sichtbarkeit vor Spielstart
-            }, 100);
+                addEvent(gameState.matchEvents[0]);
+                
+                // Spiel nach kurzer Verzögerung starten
+                setTimeout(() => {
+                    startMatch();
+                }, 2000);
+            }, 500);
         }
         
         // Seite initialisieren
